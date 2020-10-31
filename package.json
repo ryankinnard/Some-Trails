@@ -4,7 +4,6 @@
   "description": "Hiking trail finder web application",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm i",
     "test": "npm run build",
     "postinstall": "npm run build",
     "build": "webpack",
