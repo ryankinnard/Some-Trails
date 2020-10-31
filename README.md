@@ -1,7 +1,5 @@
 # hiking-app
 
-Repo for team
-
 ## Getting started
 
 Clone the repo and run the following commands
