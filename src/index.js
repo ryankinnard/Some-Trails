@@ -18,11 +18,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-   // obvious error
+  // obvious error
   res.send("This is the home page");
 });
-
-something invalid;
 
 app.get("/health", (req, res) => {
   res.send("Healthy!");
