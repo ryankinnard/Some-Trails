@@ -6,13 +6,19 @@ var records = [
     displayName: "John",
     physicalLevel: 3,
   },
+  {
+    id: 1,
+    username: "test",
+    password: "testing",
+    displayName: "Tester",
+    physicalLevel: 1,
+  },
 ];
 
 exports.findById = function (id, cb) {
   process.nextTick(function () {
-    var idx = id - 1;
-    if (records[idx]) {
-      cb(null, records[idx]);
+    if (records.hasOwnProperty(id)) {
+      cb(null, records[id]);
     } else {
       cb(new Error(`User ${id} does not exist`));
     }

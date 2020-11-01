@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
+const cel = require("connect-ensure-login");
 const db = require("./db");
 const app = express();
 
@@ -84,9 +85,10 @@ app.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-app.get("/profile", passport.authenticate("local"), function (req, res) {
+app.get("/profile", cel.ensureLoggedIn(), function (req, res) {
   res.render("profile", { user: req.user });
 });
+
 app.listen(port, () => {
   console.log(`Trail Finder is listening on port http://localhost:${port}`);
 });
