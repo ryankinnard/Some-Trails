@@ -1,16 +1,16 @@
 var records = [
   {
     id: 0,
-    username: "user",
-    password: "password",
-    displayName: "John",
+    username: 'user',
+    password: 'password',
+    displayName: 'John',
     physicalLevel: 3,
   },
   {
     id: 1,
-    username: "test",
-    password: "testing",
-    displayName: "Tester",
+    username: 'test',
+    password: 'testing',
+    displayName: 'Tester',
     physicalLevel: 1,
   },
 ];
