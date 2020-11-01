@@ -84,10 +84,7 @@ app.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
- app.get("/profile", passport.authenticate('local'), function (
-  req,
-  res
-) {
+app.get("/profile", passport.authenticate("local"), function (req, res) {
   res.render("profile", { user: req.user });
 });
 app.listen(port, () => {
