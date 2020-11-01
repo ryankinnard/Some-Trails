@@ -84,7 +84,7 @@ app.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function (
+ app.get("/profile", passport.authenticate('local'), function (
   req,
   res
 ) {

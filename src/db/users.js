@@ -14,7 +14,7 @@ exports.findById = function (id, cb) {
     if (records[idx]) {
       cb(null, records[idx]);
     } else {
-      cb(new Error("User " + id + " does not exist"));
+      cb(new Error(`User ${id} does not exist`));
     }
   });
 };
