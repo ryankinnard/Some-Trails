@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 
 const express = require('express');
 const passport = require('passport');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 
 import { trailsRouter } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
@@ -13,8 +13,6 @@ if (!process.env.HIKING_PROJECT_KEY) {
     `no HIKING_PROJECT_KEY set! Calls to get hiking paths wont work until this is set in the .env file. See env.sample.`,
   );
 }
-
-const db = require('./db');
 const app = express();
 
 const port = process.env.PORT || 3000;
