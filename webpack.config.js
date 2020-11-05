@@ -22,10 +22,6 @@ module.exports = {
           from: path.resolve(__dirname, 'src/views'),
           to: path.resolve(__dirname, 'dist/views'),
         },
-        {
-          from: path.resolve(__dirname, '.env'),
-          to: path.resolve(__dirname, 'dist'),
-        },
       ],
       options: {
         concurrency: 100,
