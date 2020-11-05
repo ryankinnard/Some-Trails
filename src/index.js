@@ -1,8 +1,19 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const ejs = require('ejs');
+const dotenv = require('dotenv').config();
+
+import { trailsRouter } from './routes';
+
+if (!process.env.HIKING_PROJECT_KEY) {
+  console.warn(
+    `no HIKING_PROJECT_KEY set! Calls to get hiking paths wont work until this is set in the .env file. See env.sample.`,
+  );
+}
 
 const db = require('./db');
 const app = express();
@@ -23,7 +34,7 @@ passport.use(
       if (err) {
         return cb(err, null);
       }
-      if (!user || user.password != password) {
+      if (!user || user.password !== password) {
         return cb(null, null);
       }
       return cb(null, user);
@@ -72,6 +83,8 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 // configure routes
+app.use('/trails', trailsRouter);
+
 app.get('/', function (req, res) {
   res.render('home', { user: req.user });
 });
