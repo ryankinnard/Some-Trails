@@ -1,6 +1,6 @@
 import express from 'express';
 import { Coordinate } from '../models';
-import { findTrailsNear } from '../controllers';
+import { findTrailsNear, HikingProjectOptions } from '../controllers';
 
 const router = express.Router();
 

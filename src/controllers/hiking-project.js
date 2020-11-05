@@ -60,7 +60,13 @@ export function findTrailsNear(coordinates, options = {}) {
   options.lat = coordinates.latitude;
   options.lon = coordinates.longitude;
 
-  return axios.get(`https://www.hikingproject.com/data/get-trails`, {
-    params: options,
-  });
+  return axios
+    .get(`https://www.hikingproject.com/data/get-trails`, {
+      params: options,
+    })
+    .then(({ data }) => data?.trails ?? [])
+    .catch((err) => {
+      console.error(err);
+      return [];
+    });
 }
