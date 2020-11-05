@@ -3,6 +3,7 @@ import { Strategy } from 'passport-local';
 import ejs from 'ejs';
 import morgan from 'morgan';
 import passport from 'passport';
+import * as db from '../db';
 
 function configurePassport() {
   // Configure the local strategy for use by Passport.
