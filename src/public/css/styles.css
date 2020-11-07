@@ -1,0 +1,54 @@
+.card {
+    width: 50%;
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin-left: 25px;
+}
+.card-header {
+    font-size: 25px;
+}
+
+#directions, #gear {
+    background-color: #498bf5;
+    border-color: black;
+}
+
+::placeholder {
+    color: white;
+}
+.searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: #498bf5;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+}
+
+.search_input {
+    font-family: 'Open Sans Condensed', sans-serif;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: white;
+    width: 450px;
+    caret-color:transparent;
+    line-height: 28px;
+}
+
+.searchbar:hover > .search_icon {
+    color: red;
+}
+
+.search_icon {
+    height: 28px;
+    width: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+}
