@@ -1,10 +1,17 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const Strategy = require('passport-local').Strategy;
-const ejs = require('ejs');
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import { trailsRouter } from './routes';
+import { isLoggedOn, addMiddlewares } from './middlewares';
 
-const db = require('./db');
+const express = require('express');
+const passport = require('passport');
+require('dotenv').config();
+
+if (!process.env.HIKING_PROJECT_KEY) {
+  console.warn(
+    `no HIKING_PROJECT_KEY set! Calls to get hiking paths wont work until this is set in the .env file. See env.sample.`,
+  );
+}
 const app = express();
 const morgan = require('morgan');
 
@@ -50,28 +57,13 @@ app.set('view engine', 'ejs');
 app.engine('ejs', ejs.__express);
 app.set('views', __dirname + '/views');
 
-// middlewares
-// parse application/x-www-form-urlencoded
-app.use(morgan('combined'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(
-  require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false,
-  }),
-);
-
-//Init Passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-// parse application/json
-app.use(bodyParser.json());
-
 const port = process.env.PORT || 3000;
+addMiddlewares(app);
 
 // configure routes
+app.use('/trails', trailsRouter);
+
+// @todo move login stuff to seperate route&controller
 app.get('/', function (req, res) {
   res.render('home', { user: req.user });
 });
@@ -97,6 +89,15 @@ app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });
 });
 
+app.get('/nearby', function (req, res) {
+  res.render('nearby');
+});
+
+app.get('/gear', function (req, res) {
+  res.render('gear');
+});
+
+// start server
 app.listen(port, () => {
   console.log(`Trail Finder is listening on port http://localhost:${port}`);
 });
