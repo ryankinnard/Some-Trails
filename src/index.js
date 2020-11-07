@@ -1,12 +1,11 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { trailsRouter } from './routes';
+import { isLoggedOn, addMiddlewares } from './middlewares';
 
 const express = require('express');
 const passport = require('passport');
 require('dotenv').config();
-
-import { trailsRouter } from './routes';
-import { isLoggedOn, addMiddlewares } from './middlewares';
 
 if (!process.env.HIKING_PROJECT_KEY) {
   console.warn(
@@ -45,6 +44,10 @@ app.get('/logout', function (req, res) {
 
 app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });
+});
+
+app.get('/gear', function (req, res) {
+  res.render('gear');
 });
 
 // start server
