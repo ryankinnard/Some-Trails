@@ -46,6 +46,10 @@ app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });
 });
 
+app.get('/nearby', function (req, res) {
+  res.render('nearby');
+});
+
 app.get('/gear', function (req, res) {
   res.render('gear');
 });
