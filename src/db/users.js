@@ -1,4 +1,4 @@
-const records = [
+var records = [
   {
     id: 0,
     username: 'user',
@@ -34,5 +34,11 @@ module.exports.findByUsername = function (username, cb) {
       }
     }
     return cb(null, null);
+  });
+};
+
+module.exports.pushUser = function (user, cb) {
+  process.nextTick(function () {
+    records.push(user);
   });
 };
