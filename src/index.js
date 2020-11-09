@@ -5,6 +5,9 @@ import { isLoggedOn, addMiddlewares } from './middlewares';
 
 const express = require('express');
 const passport = require('passport');
+
+import { User } from './models';
+
 require('dotenv').config();
 
 if (!process.env.HIKING_PROJECT_KEY) {
@@ -20,9 +23,31 @@ addMiddlewares(app);
 // configure routes
 app.use('/trails', trailsRouter);
 
+app.use(express.static('db'));
+
 // @todo move login stuff to seperate route&controller
 app.get('/', function (req, res) {
   res.render('home', { user: req.user });
+});
+
+app.post('/new-user', function (req, res) {
+  //Create User Object
+  //get the db
+  //confirm can push
+  //push user onto db
+  //Go to post login page with this user
+
+  const newUser = new User(
+    1,
+    'USERNAME',
+    'PASSWORD',
+    'EMAIL',
+    'DISPLAYNAME',
+    3,
+  );
+
+  console.log(JSON.stringify(req.body, null, 2));
+  console.log(JSON.stringify(newUser, null, 2));
 });
 
 app.get('/login', function (req, res) {
