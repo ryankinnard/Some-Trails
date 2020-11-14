@@ -3,13 +3,13 @@ import { Strategy } from 'passport-local';
 import ejs from 'ejs';
 import morgan from 'morgan';
 import passport from 'passport';
-import * as db from '../db';
+import * as users from '../controllers/users';
 
 function configurePassport() {
   // Configure the local strategy for use by Passport.
   passport.use(
     new Strategy(function (username, password, cb) {
-      db.users.findByUsername(username, function (err, user) {
+      users.findByUsername(username, function (err, user) {
         if (err) {
           return cb(err, null);
         }
@@ -27,7 +27,7 @@ function configurePassport() {
   });
 
   passport.deserializeUser(function (id, cb) {
-    db.users.findById(id, function (err, user) {
+    users.findById(id, function (err, user) {
       if (err) {
         return cb(err);
       }
