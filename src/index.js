@@ -21,8 +21,6 @@ addMiddlewares(app);
 // configure routes
 app.use('/trails', trailsRouter);
 
-//app.use(express.static('db'));
-
 // @todo move login stuff to seperate route&controller
 app.get('/', function (req, res) {
   res.render('home', { user: req.user });
