@@ -1,12 +1,18 @@
-<form action='/new-user' method="post">
+<form action='/createUser' method="post">
+
+  <script>
+    $(document).ready(function(){
+        $("#newUserModalStart").modal('show');
+    });
+  </script>
 
 <!-- New User Modal -->
-<div class="modal fade" id=newUserModalStart tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id=newUserModalStart tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion1Titles">Greetings</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -30,7 +36,7 @@
 
 
 <!--First Question -->
-<div class="modal fade" id=newUserModalQuestion1 tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id=newUserModalQuestion1 tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -365,21 +371,21 @@
         </fieldset>
 
         <div class="input-group">
-          <input type="text" class="form-control" id="newUserWeight">
+          <input type="text" class="form-control" id="newUserWeight" name="weight">
           <div class="input-group-append">
             <span class="input-group-text">weight in lbs</span>
           </div>
         </div>
           <br>
         <div class="input-group">
-          <input type="text" class="form-control" id="newUserHeight">
+          <input type="text" class="form-control" id="newUserHeight" name="height">
           <div class="input-group-append">
             <span class="input-group-text">height in inches</span>
           </div>
         </div>
         <br>
         <div class="input-group">
-          <input type="text" class="form-control" id="newUserDisplayName">
+          <input type="text" class="form-control" id="newUserDisplayName" name="displayName">
           <div class="input-group-append">
             <span class="input-group-text">What Should I Call You?</span>
           </div>
@@ -408,21 +414,21 @@
 
       <div class="modal-body">
         <div class="input-group">
-          <input type="text" class="form-control" id="userName">
+          <input type="text" class="form-control" id="username" name="username">
           <div class="input-group-append">
             <span class="input-group-text">Username</span>
           </div>
         </div>
           <br>
         <div class="input-group">
-          <input type="password" class="form-control" id="password">
+          <input type="password" class="form-control" id="password" name="password">
           <div class="input-group-append">
             <span class="input-group-text">Password</span>
           </div>
         </div>
         <br>
         <div class="input-group">
-          <input type="text" class="form-control" id="email">
+          <input type="text" class="form-control" id="email" name="email">
           <div class="input-group-append">
             <span class="input-group-text">Email</span>
           </div>

@@ -29,6 +29,7 @@ module.exports.findByUsername = function (username, cb) {
   process.nextTick(function () {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
+      //console.log(record);
       if (record.username === username) {
         return cb(null, record);
       }
