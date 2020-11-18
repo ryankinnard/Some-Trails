@@ -20,35 +20,49 @@
                 <div class="container">
                     <h3>Recommended Gear
                         <span data-toggle="tooltip" data-placement="right"
-                            title="Below is gear we recommend for this trail">ⓘ</span>
+                            title="Below is gear we recommend for this trail, hover over each image to view a description">ⓘ</span>
                     </h3>
+
                     <div class="card">
                         <div class="container">
                             <div class="col-md-4 px-0">
-                                <img data-toggle="tooltip" data-placement="right" title="Tooltip on right"
-                                    src="https://www.flaticon.com/svg/static/icons/svg/2826/2826618.svg"
-                                    class="img-fluid">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desBoots %>"
+                                    src="<%= gear.boots %>" class="img-fluid">
                             </div>
                         </div>
                     </div>
+
+
+                    <% if (gear.temp < 32) { %>
                     <div class="card">
                         <div class="container">
                             <div class="col-md-4 px-0">
-                                <img data-toggle="tooltip" data-placement="right" title="Tooltip on right"
-                                    src="https://www.flaticon.com/svg/static/icons/svg/2325/2325148.svg"
-                                    class="img-fluid">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desHeavyJacket %>"
+                                    src="<%= gear.heavyJacket %>" class="img-fluid">
                             </div>
                         </div>
                     </div>
+                    <% } else { %>
                     <div class="card">
                         <div class="container">
                             <div class="col-md-4 px-0">
-                                <img data-toggle="tooltip" data-placement="right" title="Tooltip on right"
-                                    src="https://www.flaticon.com/svg/static/icons/svg/3126/3126039.svg"
-                                    class="img-fluid">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desLightJacket %>"
+                                    src="<%= gear.lightJacket %>" class="img-fluid">
                             </div>
                         </div>
                     </div>
+                    <% } %>
+
+                    <% if (gear.elevationGain > 2000) { %>
+                    <div class="card">
+                        <div class="container">
+                            <div class="col-md-4 px-0">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desPoles %>"
+                                    src="<%= gear.poles %>" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
                 </div>
             </div>
         </div>

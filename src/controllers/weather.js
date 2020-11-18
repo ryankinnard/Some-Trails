@@ -1,4 +1,5 @@
-function getWeather(lat, long) {
+import axios from 'axios';
+export function getWeather(lat, long) {
   const key = OPEN_WEATHER_KEY;
   const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}&units=imperial`;
 
