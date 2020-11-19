@@ -31,6 +31,7 @@ app.use('/newUser', newUserRouter);
 
 app.use('/createUser', newUserRouter);
 
+// nearby router
 app.use('/', nearbyRoute);
 
 app.get('/login', function (req, res) {
