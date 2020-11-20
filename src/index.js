@@ -21,7 +21,6 @@ addMiddlewares(app);
 app.use('/', authRouter);
 app.use('/trails', trailsRouter);
 
-// @todo move login stuff to seperate route&controller
 app.get('/', function (req, res) {
   res.render('home', { user: req.user });
 });
