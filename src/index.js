@@ -1,10 +1,9 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { trailsRouter, newUserRouter } from './routes';
+import { trailsRouter, newUserRouter, authRouter } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
 
 const express = require('express');
-const passport = require('passport');
 
 require('dotenv').config();
 
@@ -19,6 +18,7 @@ const port = process.env.PORT || 3000;
 addMiddlewares(app);
 
 // configure routes
+app.use('/', authRouter);
 app.use('/trails', trailsRouter);
 
 // @todo move login stuff to seperate route&controller
@@ -29,23 +29,6 @@ app.get('/', function (req, res) {
 app.use('/newUser', newUserRouter);
 
 app.use('/createUser', newUserRouter);
-
-app.get('/login', function (req, res) {
-  res.render('login');
-});
-
-app.post(
-  '/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function (req, res) {
-    res.redirect('/');
-  },
-);
-
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
 
 app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });
