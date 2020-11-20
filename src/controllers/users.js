@@ -1,4 +1,4 @@
-const records = [
+var records = [
   {
     id: 0,
     username: 'user',
@@ -29,10 +29,17 @@ module.exports.findByUsername = function (username, cb) {
   process.nextTick(function () {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
+      //console.log(record);
       if (record.username === username) {
         return cb(null, record);
       }
     }
     return cb(null, null);
+  });
+};
+
+module.exports.pushUser = function (user, cb) {
+  process.nextTick(function () {
+    records.push(user);
   });
 };

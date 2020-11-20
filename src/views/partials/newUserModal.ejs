@@ -1,0 +1,446 @@
+<form action='/createUser' method="post">
+
+  <script>
+    $(document).ready(function(){
+        $("#newUserModalStart").modal('show');
+    });
+  </script>
+
+<!-- New User Modal -->
+<div class="modal fade" id=newUserModalStart tabindex="-1" role="dialog" aria-hidden="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalQuestion1Titles">Greetings</h5>
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <fieldset class="form-group">
+          <div class="row">
+          Creating a user profile will allow us to reccomend trails for you based on your ability and location. We will ask you some basic quesions about your physical state and a few other questions to set this up!
+          </div>
+        </fieldset>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No Thanks</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion1">That Sounds Great</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--First Question -->
+<div class="modal fade" id=newUserModalQuestion1 tabindex="-1" role="dialog" aria-hidden="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalQuestion1Titles">Physical Assessment(1/5)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <fieldset class="form-group">
+          <div class="row">
+          The idea of walking several miles...
+          </div>
+          <div class="row">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q1" id="answer0" value="option0">
+                <label class="form-check-label" for="answer1">
+                  Sounds Very Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q1" id="answer1" value="option1">
+                <label class="form-check-label" for="answer2">
+                  Sounds Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q1" id="answer2" value="option2">
+                <label class="form-check-label" for="answer4">
+                  Sounds Doable
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q1" id="answer3" value="option3">
+                <label class="form-check-label" for="answer4">
+                  Sounds Hard
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q1" id="answer4" value="option4">
+                <label class="form-check-label" for="answer5">
+                  Sounds Very Hard
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalStart"> Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion2">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Second Question -->
+<div class="modal fade" id=newUserModalQuestion2 tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalQuestion2Titles">Physical Assessment(2/5)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-sm-2 col-form-label">Second Question...</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q2" id="answer0" value="option0">
+                <label class="form-check-label" for="answer0">
+                  Sounds Very Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q2" id="answer1" value="option1">
+                <label class="form-check-label" for="answer1">
+                  Sounds Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q2" id="answer2" value="option2">
+                <label class="form-check-label" for="answer2">
+                  Sounds Doable
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q2" id="answer3" value="option3">
+                <label class="form-check-label" for="answer3">
+                  Sounds Hard
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q2" id="answer4" value="option4">
+                <label class="form-check-label" for="answer4">
+                  Sounds Very Hard
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion1"> Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion3">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Third Question -->
+<div class="modal fade" id=newUserModalQuestion3 tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalQuestion3Titles">Physical Assessment(3/5)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-sm-2 col-form-label">Third Question...</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q3" id="answer0" value="option0">
+                <label class="form-check-label" for="answer0">
+                  Sounds Very Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q3" id="answer1" value="option1">
+                <label class="form-check-label" for="answer1">
+                  Sounds Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q3" id="answer2" value="option2">
+                <label class="form-check-label" for="answer2">
+                  Sounds Doable
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q3" id="answer3" value="option3">
+                <label class="form-check-label" for="answer3">
+                  Sounds Hard
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q3" id="answer4" value="option4">
+                <label class="form-check-label" for="answer4">
+                  Sounds Very Hard
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion2"> Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion4">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Fourth Question -->
+<div class="modal fade" id=newUserModalQuestion4 tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalQuestion4Titles">Physical Assessment(4/5)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-sm-2 col-form-label">Second Question...</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" id="answer0" value="option0">
+                <label class="form-check-label" for="answer0">
+                  Sounds Very Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" id="answer1" value="option1">
+                <label class="form-check-label" for="answer1">
+                  Sounds Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" id="answer2" value="option2">
+                <label class="form-check-label" for="answer2">
+                  Sounds Doable
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" id="answer3" value="option3">
+                <label class="form-check-label" for="answer3">
+                  Sounds Hard
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" id="answer4" value="option4">
+                <label class="form-check-label" for="answer4">
+                  Sounds Very Hard
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion3"> Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Fifth Question -->
+<div class="modal fade" id=newUserModalQuestion5 tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalQuestion5Titles">Physical Assessment(5/5)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-sm-2 col-form-label">Fifth Question...</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q5" id="answer0" value="option0">
+                <label class="form-check-label" for="answer1">
+                  Sounds Very Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q5" id="answer1" value="option1">
+                <label class="form-check-label" for="answer2">
+                  Sounds Easy
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q5" id="answer2" value="option2">
+                <label class="form-check-label" for="answer4">
+                  Sounds Doable
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q5" id="answer3" value="option3">
+                <label class="form-check-label" for="answer4">
+                  Sounds Hard
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="q5" id="answer4" value="option4">
+                <label class="form-check-label" for="answer5">
+                  Sounds Very Hard
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion4">Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalPersonalInfo">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Personal Info -->
+<div class="modal fade" id=newUserModalPersonalInfo tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalInfo">Tell me about yourself</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-sm-2 col-form-label">Gender</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="Male">
+                <label class="form-check-label" for="maleRadio">
+                  Male
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="femaleRadio" value="Female">
+                <label class="form-check-label" for="femaleRadio">
+                  Female
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="input-group">
+          <input type="text" class="form-control" id="newUserWeight" name="weight">
+          <div class="input-group-append">
+            <span class="input-group-text">weight in lbs</span>
+          </div>
+        </div>
+          <br>
+        <div class="input-group">
+          <input type="text" class="form-control" id="newUserHeight" name="height">
+          <div class="input-group-append">
+            <span class="input-group-text">height in inches</span>
+          </div>
+        </div>
+        <br>
+        <div class="input-group">
+          <input type="text" class="form-control" id="newUserDisplayName" name="displayName">
+          <div class="input-group-append">
+            <span class="input-group-text">What Should I Call You?</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalUserInfo">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--User Info -->
+<div class="modal fade" id=newUserModalUserInfo tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalInfo">Account Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="input-group">
+          <input type="text" class="form-control" id="username" name="username">
+          <div class="input-group-append">
+            <span class="input-group-text">Username</span>
+          </div>
+        </div>
+          <br>
+        <div class="input-group">
+          <input type="password" class="form-control" id="password" name="password">
+          <div class="input-group-append">
+            <span class="input-group-text">Password</span>
+          </div>
+        </div>
+        <br>
+        <div class="input-group">
+          <input type="text" class="form-control" id="email" name="email">
+          <div class="input-group-append">
+            <span class="input-group-text">Email</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Back</button>
+        <button type="submit" class="btn btn-primary">Create User</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
