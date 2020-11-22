@@ -3,6 +3,7 @@ import { Coordinate } from '../models';
 import { findTrailsNear, HikingProjectOptions } from '../controllers';
 import { findDistanceToTrail } from '../controllers';
 import { ziptoLatLon } from '../controllers';
+import { estimatedTime } from '../controllers';
 
 const router = express.Router();
 
@@ -25,8 +26,12 @@ router.get('/', async function (req, res) {
       minLength,
       minStars,
     });
-    const trails = await findTrailsNear(coordinate, options);
 
+    const trails = await findTrailsNear(coordinate, options);
+    trails.forEach((element) => {
+      element.distance = findDistanceToTrail(element, coordinate);
+      element.time = estimatedTime(element);
+    });
     return res.json({
       trails,
     });
