@@ -1,0 +1,52 @@
+<%- include('partials/header') -%>
+<%- include('partials/navbar') -%>
+
+<div class="container-fluid nearby-view" id="nearby-view">
+  <aside class="bg-light border-right" id="sidebar-wrapper">
+    <div class="list-group list-group-flush">
+      <%- include('partials/trails-search-form') -%>
+    </div>
+  </aside>
+
+ 
+  <main class="container">
+    <% for(var i=0; i < 10; i++) {%>
+    <div class="card">
+      <div class="card-header"><strong><%= results[i].name %></strong></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <strong>Location: </strong>
+            <div><%= results[i].location %></div>
+          </div>
+          <div class="col">
+            <strong>Distance: </strong>
+            <div>0.3 mi. away</div>
+          </div>
+          <div class="col">
+            <strong>Difficulty: </strong>
+            <div><%= results[i].difficulty %></div>
+          </div>
+          <div class="col">
+            <strong>Est. Time: </strong>
+            <div>30 min.</div>
+          </div>
+          <div class="col">
+            <strong>Hike Length: </strong>
+            <div><%= results[i].length %> mi.</div>
+          </div>
+        </div>
+
+        <br>
+        <a href="#" class="btn btn-primary" id="directions">Get Directions</a>
+        <a href="#" class="btn btn-primary" id="gear"> Gear Recommendations</a>
+      </div>
+    </div>
+    <br>
+    <% } %>
+  </main>
+  <br>
+
+
+</div>
+<%- include('partials/footer') -%>
