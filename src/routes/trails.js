@@ -16,6 +16,7 @@ router.get('/', async function (req, res) {
       minLength,
       minStars,
     } = req.query;
+    const latLon = await ziptoLatLon(req.query.location);
     const coordinate = new Coordinate(latLon.lat, latLon.lng);
     const options = new HikingProjectOptions({
       maxDistance,
@@ -25,7 +26,7 @@ router.get('/', async function (req, res) {
       minStars,
     });
     const trails = await findTrailsNear(coordinate, options);
-    console.log(process.env.HIKING_PROJECT_KEY);
+
     return res.json({
       trails,
     });
