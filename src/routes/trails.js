@@ -3,21 +3,22 @@ import { Coordinate } from '../models';
 import { findTrailsNear, HikingProjectOptions } from '../controllers';
 import { findDistanceToTrail } from '../controllers';
 import { ziptoLatLon } from '../controllers';
+import { estimatedTime } from '../controllers';
 
 const router = express.Router();
 
 router.get('/', async function (req, res) {
   try {
     const {
-      latitude,
-      longitude,
+      location,
       maxDistance,
       maxResults,
       sort,
       minLength,
       minStars,
     } = req.query;
-    const coordinate = new Coordinate(latitude, longitude);
+    const latLon = await ziptoLatLon(req.query.location);
+    const coordinate = new Coordinate(latLon.lat, latLon.lng);
     const options = new HikingProjectOptions({
       maxDistance,
       maxResults,
@@ -25,24 +26,15 @@ router.get('/', async function (req, res) {
       minLength,
       minStars,
     });
+
     const trails = await findTrailsNear(coordinate, options);
-    console.log(process.env.HIKING_PROJECT_KEY);
+    trails.forEach((element) => {
+      element.distance = findDistanceToTrail(element, coordinate);
+      element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
+    });
     return res.json({
       trails,
     });
-  } catch (e) {
-    console.warn(e);
-    res.sendStatus(400);
-  }
-});
-
-router.get('/zip', async function (req, res) {
-  try {
-    var zip = 48207;
-    const latLon = await ziptoLatLon(zip);
-    const coordinate = new Coordinate(latLon.lat, latLon.lng);
-    console.log(coordinate);
-    return res.json(latLon);
   } catch (e) {
     console.warn(e);
     res.sendStatus(400);
