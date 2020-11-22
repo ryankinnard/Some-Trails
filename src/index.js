@@ -59,10 +59,12 @@ app.get('/gear', function (req, res) {
   res.render('gear');
 });
 
-app.get('/search', async function redirectToSearch(req, res) {
+app.post('/search', async function redirectToSearch(req, res) {
   //const coordinate = await ziptoLatLon(req.body.zip);
   //const results = await findTrailsNear(coordinate);
-  res.render('search-results', req.body);
+  console.log(req.body);
+  console.log(req.body.zip);
+  res.render('search-results', { zip: req.body.zip });
 });
 
 // start server

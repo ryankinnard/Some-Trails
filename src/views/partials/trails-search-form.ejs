@@ -1,4 +1,4 @@
-<form method="get" action="/search">
+<form method="post" action="/search">
   <div class="form-row align-items-center">
     <div class="col-auto">
       <label class="sr-only" for="zip">Zip</label>
@@ -6,7 +6,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">Zip</div>
         </div>
-        <input type="number" class="form-control" id="zip" placeholder="00000">
+        <input type="number" class="form-control" name="zip" id="zip" placeholder="00000">
       </div>
     </div>
   </div>
