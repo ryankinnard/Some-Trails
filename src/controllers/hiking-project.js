@@ -57,8 +57,8 @@ export class HikingProjectOptions {
 
 export function findTrailsNear(coordinates, options = {}) {
   options.key = process.env.HIKING_PROJECT_KEY;
-  options.lat = coordinates.latitude;
-  options.lon = coordinates.longitude;
+  options.lat = coordinates.lat;
+  options.lon = coordinates.lng;
 
   return axios
     .get(`https://www.hikingproject.com/data/get-trails`, {

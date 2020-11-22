@@ -2,6 +2,8 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { trailsRouter, newUserRouter } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
+import { ziptoLatLon } from './controllers';
+import { findTrailsNear, HikingProjectOptions } from './controllers';
 
 const express = require('express');
 const passport = require('passport');
@@ -60,11 +62,10 @@ app.get('/gear', function (req, res) {
 });
 
 app.post('/search', async function redirectToSearch(req, res) {
-  //const coordinate = await ziptoLatLon(req.body.zip);
-  //const results = await findTrailsNear(coordinate);
-  console.log(req.body);
-  console.log(req.body.zip);
-  res.render('search-results', { zip: req.body.zip });
+  const coordinate = await ziptoLatLon(req.body.zip);
+  const results = await findTrailsNear(coordinate);
+  console.log(results);
+  res.render('search-results', { array: results });
 });
 
 // start server
