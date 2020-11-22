@@ -59,6 +59,12 @@ app.get('/gear', function (req, res) {
   res.render('gear');
 });
 
+app.get('/search', async function redirectToSearch(req, res) {
+  //const coordinate = await ziptoLatLon(req.body.zip);
+  //const results = await findTrailsNear(coordinate);
+  res.render('search-results', req.body);
+});
+
 // start server
 app.listen(port, () => {
   console.log(`Trail Finder is listening on port http://localhost:${port}`);
