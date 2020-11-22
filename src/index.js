@@ -65,7 +65,7 @@ app.post('/search', async function redirectToSearch(req, res) {
   const coordinate = await ziptoLatLon(req.body.zip);
   const results = await findTrailsNear(coordinate);
   console.log(results);
-  res.render('search-results', { array: results });
+  res.render('search-results', { results: results });
 });
 
 // start server
