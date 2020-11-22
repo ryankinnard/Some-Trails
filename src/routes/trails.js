@@ -9,15 +9,14 @@ const router = express.Router();
 router.get('/', async function (req, res) {
   try {
     const {
-      latitude,
-      longitude,
+      location,
       maxDistance,
       maxResults,
       sort,
       minLength,
       minStars,
     } = req.query;
-    const coordinate = new Coordinate(latitude, longitude);
+    const coordinate = new Coordinate(latLon.lat, latLon.lng);
     const options = new HikingProjectOptions({
       maxDistance,
       maxResults,
@@ -30,19 +29,6 @@ router.get('/', async function (req, res) {
     return res.json({
       trails,
     });
-  } catch (e) {
-    console.warn(e);
-    res.sendStatus(400);
-  }
-});
-
-router.get('/zip', async function (req, res) {
-  try {
-    var zip = 48207;
-    const latLon = await ziptoLatLon(zip);
-    const coordinate = new Coordinate(latLon.lat, latLon.lng);
-    console.log(coordinate);
-    return res.json(latLon);
   } catch (e) {
     console.warn(e);
     res.sendStatus(400);
