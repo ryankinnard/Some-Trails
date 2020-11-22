@@ -1,12 +1,12 @@
 export function findDistanceToTrail(trail, coordinates) {
-  const distance = latLonDistance(trail.latitude, trail.longitude, coordinates);
+  const distance = latLonDistance(trail, coordinates);
   return distance;
 }
 
-function latLonDistance(trailLat, trailLon, coordinate) {
-  var radTrailLat = (Math.PI * trailLat) / 180;
+function latLonDistance(trail, coordinate) {
+  var radTrailLat = (Math.PI * trail.latitude) / 180;
   var radZipLat = (Math.PI * coordinate.latitude) / 180;
-  var radLongDiff = (Math.PI * (trailLon - coordinate.longitude)) / 180;
+  var radLongDiff = (Math.PI * (trail.longitude - coordinate.longitude)) / 180;
   var dist =
     Math.sin(radTrailLat) * Math.sin(radZipLat) +
     Math.cos(radTrailLat) * Math.cos(radZipLat) * Math.cos(radLongDiff);
