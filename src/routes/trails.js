@@ -30,7 +30,7 @@ router.get('/', async function (req, res) {
     const trails = await findTrailsNear(coordinate, options);
     trails.forEach((element) => {
       element.distance = findDistanceToTrail(element, coordinate);
-      element.time = estimatedTime(element);
+      element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
     });
     return res.json({
       trails,
