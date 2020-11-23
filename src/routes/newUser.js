@@ -9,13 +9,14 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  const newUser = new User(
-    0,
-    req.body.username,
-    req.body.password,
-    req.body.email,
-    req.body.displayName,
-    parseDifficulty(
+  const { username, password, email, displayName } = req.body;
+  const newUser = new User({
+    id: users.length,
+    username,
+    password,
+    email,
+    displayName,
+    difficultyLevel: diccuparseDifficulty(
       (parseInt(req.body.q1) +
         parseInt(req.body.q2) +
         parseInt(req.body.q3) +
@@ -23,7 +24,7 @@ router.post('/', function (req, res) {
         parseInt(req.body.q5)) /
         6,
     ),
-  );
+  });
   users.pushUser(newUser);
   res.render('home', { user: 0 });
 });
