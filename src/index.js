@@ -8,6 +8,7 @@ import { findDistanceToTrail } from './controllers';
 
 const express = require('express');
 const passport = require('passport');
+const nearbyRoute = require('./routes/nearby');
 
 require('dotenv').config();
 
@@ -33,6 +34,9 @@ app.use('/newUser', newUserRouter);
 
 app.use('/createUser', newUserRouter);
 
+// nearby router
+app.use('/', nearbyRoute);
+
 app.get('/login', function (req, res) {
   res.render('login');
 });
@@ -54,14 +58,6 @@ app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });
 });
 
-app.get('/nearby', function (req, res) {
-  res.render('nearby');
-});
-
-app.get('/gear', function (req, res) {
-  res.render('gear');
-});
-
 app.post('/search', async function redirectToSearch(req, res) {
   const coordinate = await ziptoLatLon(req.body.zip);
   const results = await findTrailsNear(coordinate);
@@ -69,6 +65,7 @@ app.post('/search', async function redirectToSearch(req, res) {
     element.distance = findDistanceToTrail(element, coordinate);
     element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
   });
+  console.log(results);
   res.render('search-results', { results: results });
 });
 
