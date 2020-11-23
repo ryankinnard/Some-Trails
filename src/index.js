@@ -32,7 +32,7 @@ app.use('/newUser', newUserRouter);
 app.use('/createUser', newUserRouter);
 
 // nearby router
-app.use('/', nearbyRoute);
+app.use('/nearby', nearbyRoute);
 
 app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });

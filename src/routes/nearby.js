@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/nearby', function (req, res) {
+router.get('/', function (req, res) {
   let gear = {
     temp: 30,
     elevationGain: 2005,
@@ -19,4 +19,4 @@ router.get('/nearby', function (req, res) {
   res.render('nearby', { gear: gear });
 });
 
-module.exports = router;
+export const nearbyRoute = router;
