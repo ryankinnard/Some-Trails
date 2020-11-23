@@ -1,18 +1,15 @@
-export function findDistanceToTrail(trail, coordinates) {
-  const distance = latLonDistance(trail, coordinates);
-  return distance;
-}
-
-function latLonDistance(trail, coordinate) {
-  var radTrailLat = (Math.PI * trail.latitude) / 180;
-  var radZipLat = (Math.PI * coordinate.latitude) / 180;
-  var radLongDiff = (Math.PI * (trail.longitude - coordinate.longitude)) / 180;
+export function findDistanceToTrail(trail, coordinate) {
+  console.log(trail.latitude);
+  var radlat1 = (Math.PI * trail.latitude) / 180;
+  console.log(radlat1);
+  var radlat2 = (Math.PI * coordinate.lat) / 180;
+  console.log(radlat2);
+  var theta = trail.longitude - coordinate.lng;
+  console.log(theta);
+  var radtheta = (Math.PI * theta) / 180;
   var dist =
-    Math.sin(radTrailLat) * Math.sin(radZipLat) +
-    Math.cos(radTrailLat) * Math.cos(radZipLat) * Math.cos(radLongDiff);
-  if (dist > 1) {
-    dist = 1;
-  }
+    Math.sin(radlat1) * Math.sin(radlat2) +
+    Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
   dist = Math.acos(dist);
   dist = (dist * 180) / Math.PI;
   dist = dist * 60 * 1.1515;

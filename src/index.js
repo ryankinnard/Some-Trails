@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 import { trailsRouter, newUserRouter, authRouter, nearbyRoute } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
 import { ziptoLatLon } from './controllers';
-import { findTrailsNear } from './controllers';
+import { findTrailsNear, findDistanceToTrail } from './controllers';
 
 const express = require('express');
 
