@@ -4,7 +4,7 @@ import * as users from '../controllers/users';
 
 const router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', function (_, res) {
   res.render('newUser');
 });
 
