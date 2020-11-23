@@ -37,12 +37,18 @@
 
         <br>
         <a href="#" class="btn btn-primary" id="directions">Get Directions</a>
-        <a href="#" class="btn btn-primary" id="gear"> Gear Recommendations</a>
+        <button id="gear" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Gear Recommendations
+        </button>
       </div>
     </div>
     <br>
   </main>
   <br>
+
+  <div>
+    <%- include('partials/gearModal') -%>
+  </div>
 
 </div>
 <%- include('partials/footer') -%>
