@@ -4,6 +4,7 @@ import { trailsRouter, newUserRouter } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
 import { ziptoLatLon } from './controllers';
 import { findTrailsNear, HikingProjectOptions } from './controllers';
+import { findDistanceToTrail } from './controllers';
 
 const express = require('express');
 const passport = require('passport');
@@ -64,6 +65,7 @@ app.get('/gear', function (req, res) {
 app.post('/search', async function redirectToSearch(req, res) {
   const coordinate = await ziptoLatLon(req.body.zip);
   const results = await findTrailsNear(coordinate);
+  console.log(results);
   results.forEach((element) => {
     element.distance = findDistanceToTrail(element, coordinate);
     element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
