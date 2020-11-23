@@ -8,30 +8,32 @@
     </div>
   </aside>
 
+
   <main class="container">
+    <% for(var i=0; i < results.length; i++) {%>
     <div class="card">
-      <div class="card-header"><strong>Coastal Peak</strong></div>
+      <div class="card-header"><strong><%= results[i].name %></strong></div>
       <div class="card-body">
         <div class="row">
           <div class="col">
             <strong>Location: </strong>
-            <div>101 North Peak Rd.</div>
+            <div><%= results[i].location %></div>
           </div>
           <div class="col">
             <strong>Distance: </strong>
-            <div>0.3 mi. away</div>
+            <div><%= results[i].distance %></div>
           </div>
           <div class="col">
             <strong>Difficulty: </strong>
-            <div>EASY</div>
+            <div><%= results[i].difficulty %></div>
           </div>
           <div class="col">
             <strong>Est. Time: </strong>
-            <div>30 min.</div>
+            <div><%= results[i].time %></div>
           </div>
           <div class="col">
             <strong>Hike Length: </strong>
-            <div>1.0 mi.</div>
+            <div><%= results[i].length %> mi.</div>
           </div>
         </div>
 
@@ -41,8 +43,10 @@
       </div>
     </div>
     <br>
+    <% } %>
   </main>
   <br>
+
 
 </div>
 <%- include('partials/footer') -%>
