@@ -65,12 +65,10 @@ app.get('/gear', function (req, res) {
 app.post('/search', async function redirectToSearch(req, res) {
   const coordinate = await ziptoLatLon(req.body.zip);
   const results = await findTrailsNear(coordinate);
-  console.log(results);
   results.forEach((element) => {
     element.distance = findDistanceToTrail(element, coordinate);
     element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
   });
-  console.log(results);
   res.render('search-results', { results: results });
 });
 
