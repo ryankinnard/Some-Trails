@@ -4,9 +4,11 @@ import { trailsRouter, newUserRouter } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
 import { ziptoLatLon } from './controllers';
 import { findTrailsNear, HikingProjectOptions } from './controllers';
+import { findDistanceToTrail } from './controllers';
 
 const express = require('express');
 const passport = require('passport');
+const nearbyRoute = require('./routes/nearby');
 
 require('dotenv').config();
 
@@ -32,6 +34,9 @@ app.use('/newUser', newUserRouter);
 
 app.use('/createUser', newUserRouter);
 
+// nearby router
+app.use('/', nearbyRoute);
+
 app.get('/login', function (req, res) {
   res.render('login');
 });
@@ -51,14 +56,6 @@ app.get('/logout', function (req, res) {
 
 app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });
-});
-
-app.get('/nearby', function (req, res) {
-  res.render('nearby');
-});
-
-app.get('/gear', function (req, res) {
-  res.render('gear');
 });
 
 app.post('/search', async function redirectToSearch(req, res) {
