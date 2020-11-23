@@ -4,6 +4,8 @@ import { trailsRouter, newUserRouter, authRouter, nearbyRoute } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
 import { ziptoLatLon } from './controllers';
 import { findTrailsNear } from './controllers';
+import { findTrailsNear, HikingProjectOptions } from './controllers';
+import { findDistanceToTrail } from './controllers';
 
 const express = require('express');
 
