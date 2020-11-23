@@ -1,0 +1,70 @@
+<!-- Function for tooltip -->
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Weather in Seattle: 50°, Rain</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <h3>Recommended Gear
+                        <span data-toggle="tooltip" data-placement="right"
+                            title="Below is gear we recommend for this trail, hover over each image to view a description">ⓘ</span>
+                    </h3>
+
+                    <div class="card">
+                        <div class="container">
+                            <div class="col-md-4 px-0">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desBoots %>"
+                                    src="<%= gear.boots %>" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <% if (gear.temp < 32) { %>
+                    <div class="card">
+                        <div class="container">
+                            <div class="col-md-4 px-0">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desHeavyJacket %>"
+                                    src="<%= gear.heavyJacket %>" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <% } else { %>
+                    <div class="card">
+                        <div class="container">
+                            <div class="col-md-4 px-0">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desLightJacket %>"
+                                    src="<%= gear.lightJacket %>" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+                    <% if (gear.elevationGain > 2000) { %>
+                    <div class="card">
+                        <div class="container">
+                            <div class="col-md-4 px-0">
+                                <img data-toggle="tooltip" data-placement="right" title="<%= gear.desPoles %>"
+                                    src="<%= gear.poles %>" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
