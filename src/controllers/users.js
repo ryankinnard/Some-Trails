@@ -40,6 +40,7 @@ module.exports.findByUsername = function (username, cb) {
 
 module.exports.pushUser = function (user, cb) {
   process.nextTick(function () {
+    user.id = records.length;
     records.push(user);
   });
 };
