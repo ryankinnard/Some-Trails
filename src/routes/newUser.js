@@ -9,8 +9,6 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  console.log(req.body);
-
   const newUser = new User(
     0,
     req.body.username,
@@ -26,9 +24,6 @@ router.post('/', function (req, res) {
         6,
     ),
   );
-
-  console.log(newUser);
-
   users.pushUser(newUser);
   res.render('home', { user: 0 });
 });
