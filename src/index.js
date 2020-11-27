@@ -27,12 +27,14 @@ app.use('/trails', trailsRouter);
 
 // @todo move login stuff to seperate route&controller
 app.get('/', function (req, res) {
-  res.render('home', { user: req.user });
+  res.render('home', {
+    user: req.user,
+    showNewUserModal: req.showNewUserModal,
+  });
 });
 
 app.use('/newUser', newUserRouter);
-
-app.use('/createUser', newUserRouter);
+app.post('/newUser', newUserRouter);
 
 // nearby router
 app.use('/', nearbyRoute);
@@ -57,6 +59,8 @@ app.get('/logout', function (req, res) {
 app.get('/profile', isLoggedOn, function (req, res) {
   res.render('profile', { user: req.user });
 });
+
+app.post('/profile', newUserRouter);
 
 app.post('/search', async function redirectToSearch(req, res) {
   const coordinate = await ziptoLatLon(req.body.zip);

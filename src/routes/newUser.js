@@ -5,11 +5,11 @@ import * as users from '../controllers/users';
 const router = express.Router();
 
 router.get('/', function (req, res) {
-  res.render('newUser');
+  res.render('home', { user: req.user, showNewUserModal: true });
 });
 
-router.post('/', function (req, res) {
-  const newUser = new User(
+router.post('/profile', function (req, res) {
+  var newUser = new User(
     0,
     req.body.username,
     req.body.password,
@@ -24,8 +24,8 @@ router.post('/', function (req, res) {
         6,
     ),
   );
-  users.pushUser(newUser);
-  res.render('home', { user: 0 });
+  newUser.id = users.pushUserAndSetID(newUser);
+  res.render('profile', { user: newUser });
 });
 
 function parseDifficulty(dl) {
