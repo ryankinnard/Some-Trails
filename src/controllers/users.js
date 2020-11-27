@@ -29,7 +29,6 @@ module.exports.findByUsername = function (username, cb) {
   process.nextTick(function () {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
-      //console.log(record);
       if (record.username === username) {
         return cb(null, record);
       }
@@ -38,9 +37,9 @@ module.exports.findByUsername = function (username, cb) {
   });
 };
 
-module.exports.pushUser = function (user, cb) {
-  process.nextTick(function () {
-    user.id = records.length;
-    records.push(user);
-  });
+module.exports.pushUserAndSetID = function (user, cb) {
+  user.id = records.length;
+  records.push(user);
+  console.log(user.id);
+  return user.id;
 };
