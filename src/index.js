@@ -25,19 +25,22 @@ addMiddlewares(app);
 // configure routes
 app.use('/trails', trailsRouter);
 
-// @todo move login stuff to seperate route&controller
 app.get('/', function (req, res) {
-  res.render('home', {
-    user: req.user,
-    showNewUserModal: req.showNewUserModal,
-  });
+  if (req.isAuthenticated()) {
+    res.redirect('nearby');
+  } else {
+    res.render('home', {
+      user: req.user,
+      showNewUserModal: req.showNewUserModal,
+    });
+  }
 });
 
 app.use('/newUser', newUserRouter);
 app.post('/newUser', newUserRouter);
 
 // nearby router
-app.use('/', nearbyRoute);
+app.use('/nearby', nearbyRoute);
 
 app.get('/login', function (req, res) {
   res.render('login');
@@ -46,9 +49,7 @@ app.get('/login', function (req, res) {
 app.post(
   '/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
-  function (req, res) {
-    res.redirect('/');
-  },
+  nearbyRoute,
 );
 
 app.get('/logout', function (req, res) {
