@@ -75,7 +75,7 @@ app.post('/search', async function redirectToSearch(req, res) {
     boots: 'https://www.flaticon.com/svg/static/icons/svg/2826/2826618.svg',
     poles: 'https://www.flaticon.com/svg/static/icons/svg/2325/2325148.svg',
     desInfo:
-      'Hover over the icons to the right to see gear recommendations for this trail',
+      'Hover over the icons to the right to see gear, water and food recommendations for this trail',
     desWaterThree: 'Bring 3 liters of water, trail is longer than eight miles',
     desWaterOne: 'Bring at least a liter of water',
     desFoodOne: 'Bring at least one snack',
