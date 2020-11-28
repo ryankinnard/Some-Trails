@@ -5,6 +5,7 @@ import { isLoggedOn, addMiddlewares } from './middlewares';
 import { ziptoLatLon } from './controllers';
 import { findTrailsNear, HikingProjectOptions } from './controllers';
 import { findDistanceToTrail } from './controllers';
+import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
 
 const express = require('express');
 const passport = require('passport');
@@ -58,10 +59,13 @@ app.get('/logout', function (req, res) {
 });
 
 app.get('/profile', isLoggedOn, function (req, res) {
-  res.render('profile', { user: req.user });
+  const diffIcon = getDifficultyIconPath(
+    parseDifficultyFromNum(req.user.difficultyLevel),
+  );
+  res.render('profile', { user: req.user, diffIcon: diffIcon });
 });
 
-app.post('/profile', newUserRouter);
+app.post('/newuser', newUserRouter);
 
 app.post('/search', async function redirectToSearch(req, res) {
   const coordinate = await ziptoLatLon(req.body.zip);
