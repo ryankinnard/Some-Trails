@@ -4,14 +4,14 @@ var records = [
     username: 'user',
     password: 'password',
     displayName: 'John',
-    physicalLevel: 3,
+    difficultyLevel: 3,
   },
   {
     id: 1,
     username: 'test',
     password: 'testing',
     displayName: 'Tester',
-    physicalLevel: 1,
+    difficultyLevel: 1,
   },
 ];
 
