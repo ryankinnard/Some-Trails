@@ -2,7 +2,7 @@
 <%- include('partials/navbar') -%>
 
 <% if (user) { %>
-  <p> Hi <%= user.displayName %> </p>
+<p> Hi <%= user.displayName %> </p>
 <% } %>
 
 <div class="container-fluid nearby-view" id="nearby-view">
@@ -50,9 +50,6 @@
   </main>
   <br>
 
-  <div>
-    <%- include('partials/gearModal') -%>
-  </div>
 
 </div>
 <%- include('partials/footer') -%>
