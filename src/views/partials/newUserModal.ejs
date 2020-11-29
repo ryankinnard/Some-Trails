@@ -1,34 +1,53 @@
-<form action='/newuser' method="post">
+<%- include('validation') -%> 
+
+<form action='/newuser' method="post" id="newUserForm">
 
   <script>
     $(document).ready(function(){
         $("#newUserModalStart").modal('show');
     });
   </script>
+
+  <script>
+    function validateQuestion(currentModal, nextModal, radioButtonName){
+      if(atLeastOneRadioChecked(radioButtonName)){
+        $('#' + currentModal).modal('hide');
+        $('#' + nextModal).modal('show');
+      }
+      else{
+        console.log("Try Again");
+      }
+    }
+
+    function validatePersonalInfo(currentModal, nextModal){
+      if(atLeastOneRadioChecked('gender') && 
+        isNumeric('newUserWeight') &&
+        isNumeric('newUserHeight') &&
+        isAlphaNumeric('newUserDisplayName')
+        ){
+          $('#' + currentModal).modal('hide');
+          $('#' + nextModal).modal('show');
+        }
   
-<script>
-  function isNumeric(textToCheck){
-    const numbers = /^[0-9]+$/;
-    if(textToCheck.match(numbers)){
-        console.log("true");
-        return true
+      else{
+        console.log("Try Again");
+      } 
     }
-    console.log("False");
-    return false
-  }
 
-  function atLeastOneRadioChecked(elementName){
-    var radios = document.getElementsByName(elementName);
-    for (var i = 0, len = radios.length; i < len; i++) {
-         if (radios[i].checked) {
-             return true;
-         }
+    function validateUserInfo(currentModal){
+      if(isAlphaNumeric('username') && 
+        isNotEmpty('password') &&
+        isNotEmpty('email')
+        ){
+          submitForm('newUserForm');  
+        }
+      else{
+        console.log("Try Again");
+      }
     }
-    return false;
-  }
-</script>
+  </script>
 
-
+  
 <!-- New User Modal -->
 <div class="modal fade" id=newUserModalStart tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog" role="document">
@@ -117,7 +136,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalStart"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion2">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion1','newUserModalQuestion2','q1')">Next</button>
       </div>
     </div>
   </div>
@@ -186,7 +205,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion1"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion3">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion2','newUserModalQuestion3','q2')">Next</button>
       </div>
     </div>
   </div>
@@ -254,7 +273,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion2"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion4">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion3','newUserModalQuestion4','q3')">Next</button>
       </div>
     </div>
   </div>
@@ -323,7 +342,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion3"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion4','newUserModalQuestion5','q4')">Next</button>
       </div>
     </div>
   </div>
@@ -392,7 +411,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion4">Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalPersonalInfo">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion5','newUserModalPersonalInfo','q5')">Next</button>
       </div>
     </div>
   </div>
@@ -456,7 +475,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalUserInfo">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validatePersonalInfo('newUserModalPersonalInfo','newUserModalUserInfo')">Next</button>
       </div>
     </div>
   </div>
@@ -498,8 +517,8 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Back</button>
-        <button type="submit" class="btn btn-primary">Create User</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalPersonalInfo">Back</button>
+        <button type="button" class="btn btn-primary" onclick="validateUserInfo('newUserModalUserInfo')">Create User</button>
       </div>
     </div>
   </div>
