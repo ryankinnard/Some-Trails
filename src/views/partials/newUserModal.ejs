@@ -5,13 +5,36 @@
         $("#newUserModalStart").modal('show');
     });
   </script>
+  
+<script>
+  function isNumeric(textToCheck){
+    const numbers = /^[0-9]+$/;
+    if(textToCheck.match(numbers)){
+        console.log("true");
+        return true
+    }
+    console.log("False");
+    return false
+  }
+
+  function atLeastOneRadioChecked(elementName){
+    var radios = document.getElementsByName(elementName);
+    for (var i = 0, len = radios.length; i < len; i++) {
+         if (radios[i].checked) {
+             return true;
+         }
+    }
+    return false;
+  }
+</script>
+
 
 <!-- New User Modal -->
 <div class="modal fade" id=newUserModalStart tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newUserModalQuestion1Titles">Greetings</h5>
+        <h5 class="modal-title" id="newUserModalIntro">Greetings</h5>
         <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -26,7 +49,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> No Thanks</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion1">That Sounds Great</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick=isNumeric("1")>That Sounds Great</button>
       </div>
     </div>
   </div>
@@ -38,7 +61,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion1Titles">Physical Assessment(1/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -106,7 +129,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion2Titles">Physical Assessment(2/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -175,7 +198,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion3Titles">Physical Assessment(3/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -243,7 +266,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion4Titles">Physical Assessment(4/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>S
       </div>
@@ -312,7 +335,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion5Titles">Physical Assessment(5/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -382,7 +405,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalInfo">Tell me about yourself</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -445,7 +468,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalInfo">Account Info</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
