@@ -5,7 +5,11 @@ import { isLoggedOn, addMiddlewares } from './middlewares';
 import { ziptoLatLon } from './controllers';
 import { findTrailsNear, HikingProjectOptions } from './controllers';
 import { findDistanceToTrail } from './controllers';
-import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
+import {
+  getDifficultyIconPath,
+  getFrontFacingDifficulty,
+  parseDifficultyFromNum,
+} from './models';
 
 const express = require('express');
 const passport = require('passport');
@@ -62,7 +66,14 @@ app.get('/profile', isLoggedOn, function (req, res) {
   const diffIcon = getDifficultyIconPath(
     parseDifficultyFromNum(req.user.difficultyLevel),
   );
-  res.render('profile', { user: req.user, diffIcon: diffIcon });
+  const frontFacingDifficulty = getFrontFacingDifficulty(
+    req.user.difficultyLevel,
+  );
+  res.render('profile', {
+    user: req.user,
+    recommendedDifficulty: frontFacingDifficulty,
+    diffIcon: diffIcon,
+  });
 });
 
 app.post('/newuser', newUserRouter);

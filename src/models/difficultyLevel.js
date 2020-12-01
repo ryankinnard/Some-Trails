@@ -41,3 +41,22 @@ export function parseDifficultyFromNum(num) {
     return DifficultyLevel.BLACKBLACK;
   }
 }
+
+export function getFrontFacingDifficulty(dl) {
+  switch (dl) {
+    case DifficultyLevel.GREEN:
+      return 'Easy';
+    case DifficultyLevel.GREENBLUE:
+      return 'Easy/Intermediate';
+    case DifficultyLevel.BLUE:
+      return 'Intermediate';
+    case DifficultyLevel.BLUEBLACK:
+      return 'Intermediate/Difficult';
+    case DifficultyLevel.BLACK:
+      return 'Difficult';
+    case DifficultyLevel.BLACKBLACK:
+      return 'Very Difficult';
+    default:
+      return 'ahhhhhh';
+  }
+}
