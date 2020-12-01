@@ -21,6 +21,7 @@ router.get('/', function (req, res) {
   res.render('nearby', { gear: gear, user: req.user });
 });
 
+
 router.post('/login', function (req, res) {
   let gear = {
     icon: 'https://www.flaticon.com/svg/static/icons/svg/545/545674.svg',
@@ -42,4 +43,4 @@ router.post('/login', function (req, res) {
   res.redirect('nearby');
 });
 
-module.exports = router;
+export const nearbyRoute = router;

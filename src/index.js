@@ -1,15 +1,15 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { trailsRouter, newUserRouter } from './routes';
+import { trailsRouter, newUserRouter, authRouter, nearbyRoute } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
-import { ziptoLatLon } from './controllers';
-import { findTrailsNear, HikingProjectOptions } from './controllers';
-import { findDistanceToTrail } from './controllers';
+import {
+  findTrailsNear,
+  findDistanceToTrail,
+  ziptoLatLon,
+} from './controllers';
 import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
 
 const express = require('express');
-const passport = require('passport');
-const nearbyRoute = require('./routes/nearby');
 
 require('dotenv').config();
 
@@ -24,6 +24,7 @@ const port = process.env.PORT || 3000;
 addMiddlewares(app);
 
 // configure routes
+app.use('/', authRouter);
 app.use('/trails', trailsRouter);
 
 app.get('/', function (req, res) {
@@ -42,21 +43,6 @@ app.post('/newUser', newUserRouter);
 
 // nearby router
 app.use('/nearby', nearbyRoute);
-
-app.get('/login', function (req, res) {
-  res.render('login');
-});
-
-app.post(
-  '/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  nearbyRoute,
-);
-
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
 
 app.get('/profile', isLoggedOn, function (req, res) {
   const diffIcon = getDifficultyIconPath(
