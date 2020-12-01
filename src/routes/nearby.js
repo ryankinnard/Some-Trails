@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
     desLightJacket: "Bring a lighter jacket, it's above 32°F",
     desPoles: 'Bring hiking poles, the elevation gain is more than 2000 feet',
   };
-  res.render('nearby', { gear: gear });
+  res.render('nearby', { gear: gear, user: req.user });
 });
 
 export const nearbyRoute = router;
