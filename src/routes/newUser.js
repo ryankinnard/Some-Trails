@@ -1,11 +1,11 @@
 import express from 'express';
-import { DifficultyLevel, User } from '../models';
+import { User, getDifficultyIconPath } from '../models';
 import * as users from '../controllers/users';
 
 const router = express.Router();
 
 router.get('/', function (req, res) {
-  res.render('newUser');
+  res.render('home', { user: req.user, showNewUserModal: true });
 });
 
 router.post('/', function (req, res) {
@@ -25,25 +25,10 @@ router.post('/', function (req, res) {
         6,
     ),
   });
-  users.pushUser(newUser);
-  res.render('home', { user: 0 });
+  newUser.id = users.pushUserAndSetID(newUser);
+  req.session.user = newUser;
+  req.session.diffIcon = getDifficultyIconPath(newUser.difficultyLevel);
+  res.redirect('/profile');
 });
-
-function parseDifficulty(dl) {
-  switch (dl) {
-    case dl < 1:
-      return DifficultyLevel.GREEN;
-    case dl < 2:
-      return DifficultyLevel.GREENBLUE;
-    case dl < 3:
-      return DifficultyLevel.BLUE;
-    case dl < 4:
-      return DifficultyLevel.BLUEBLACK;
-    case dl < 5:
-      return DifficultyLevel.BLACK;
-    default:
-      return DifficultyLevel.BLACKBLACK;
-  }
-}
 
 export const newUserRouter = router;
