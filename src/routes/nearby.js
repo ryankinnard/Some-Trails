@@ -38,4 +38,4 @@ router.post('/login', function (req, res) {
   res.redirect('nearby');
 });
 
-module.exports = router;
+export const nearbyRoute = router;
