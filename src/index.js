@@ -7,6 +7,7 @@ import {
   findDistanceToTrail,
   ziptoLatLon,
 } from './controllers';
+import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
 
 const express = require('express');
 
