@@ -8,7 +8,7 @@ import {
 } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
 
-import { getDifficultyIconPath, parseDifficultyFromNum, parseDifficultyFromObject } from './models';
+import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
 
 const express = require('express');
 
@@ -16,7 +16,8 @@ require('dotenv').config();
 
 if (!process.env.HIKING_PROJECT_KEY) {
   console.warn(
-    `no HIKING_PROJECT_KEY set! Calls to get hiking paths wont work until this is set in the .env file. See env.sample.`,
+    `no HIKING_PROJECT_KEY set! Calls to get hiking paths wont work until this is set in the .env file. 
+    See env.sample.`,
   );
 }
 const app = express();
