@@ -7,7 +7,12 @@ import {
   findDistanceToTrail,
   ziptoLatLon,
 } from './controllers';
-import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
+import {
+  Coordinate,
+  getDifficultyIconPath,
+  parseDifficultyFromNum,
+  DirectionsFactory,
+} from './models';
 
 const express = require('express');
 
@@ -56,12 +61,16 @@ app.post('/newuser', newUserRouter);
 app.post('/search', async function redirectToSearch(req, res) {
   const coordinate = await ziptoLatLon(req.body.zip);
   const results = await findTrailsNear(coordinate);
-  results.forEach((element) => {
-    element.distance = findDistanceToTrail(element, coordinate);
-    element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
+  results.forEach((result) => {
+    const trailLocation = new Coordinate(result.latitude, result.longitude);
+    result.distance = findDistanceToTrail(result, coordinate);
+    result.time = result.length / 2 + 0.5 * (result.ascent / 1000);
+    result.directionLink = DirectionsFactory.createGoogleDirectionLink(
+      trailLocation,
+    );
   });
-  console.log(results);
-  res.render('search-results', { results: results });
+
+  res.render('search-results', { results });
 });
 
 // start server
