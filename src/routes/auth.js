@@ -1,7 +1,21 @@
-const express = require('express');
+import express from 'express';
+
+const passport = require('passport');
 const router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/login', function (req, res) {
+  res.render('login');
+});
+
+router.post(
+  '/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+  },
+);
+
+router.get('/logout', function (req, res) {
   let gear = {
     icon: 'https://www.flaticon.com/svg/static/icons/svg/545/545674.svg',
     water: 'https://www.flaticon.com/svg/static/icons/svg/606/606797.svg',
@@ -18,7 +32,8 @@ router.get('/', function (req, res) {
       'Wear a solid pair of hiking boots as the terrain can be challenging',
     desPoles: 'Bring hiking poles, the elevation gain is more than 700 feet',
   };
-  res.render('nearby', { gear: gear, user: req.user });
+  req.session.gear = gear;
+  res.redirect('nearby');
 });
 
-export const nearbyRoute = router;
+export const authRouter = router;
