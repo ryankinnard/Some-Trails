@@ -7,8 +7,8 @@ export const DifficultyLevel = {
   BLACKBLACK: 5,
 };
 
-export function getDifficultyIconPath(dl) {
-  switch (dl) {
+export function getDifficultyIconPath(difficultyLevel) {
+  switch (difficultyLevel) {
     case DifficultyLevel.GREEN:
       return 'https://www.hikingproject.com/img/diff/greenBorder.svg';
     case DifficultyLevel.GREENBLUE:
@@ -42,8 +42,8 @@ export function parseDifficultyFromNum(num) {
   }
 }
 
-export function getFrontFacingDifficulty(dl) {
-  switch (dl) {
+export function getFrontFacingDifficulty(difficultyLevel) {
+  switch (difficultyLevel) {
     case DifficultyLevel.GREEN:
       return 'Easy';
     case DifficultyLevel.GREENBLUE:
