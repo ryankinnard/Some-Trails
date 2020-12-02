@@ -13,36 +13,24 @@ function atLeastOneRadioChecked(elementId){
 function isAlphaNumeric(elementId){
     const alphaNumeric = /^[0-9a-zA-Z]+$/;
     const textToCheck = document.getElementById(elementId).value;
-    if(textToCheck.match(alphaNumeric)){
-        return true
-    }
-    return false
+    return textToCheck.match(alphaNumeric);
 }
 
 function isAlpha(elementId){
     const alpha = /^[a-zA-Z]+$/;
     const textToCheck = document.getElementById(elementId).value;
-    if(textToCheck.match(alpha)){
-        return true
-    }
-    return false
+    return textToCheck.match(alpha);
 }
 
 function isNumeric(elementId){
     const numbers = /^[0-9]+$/;
     const textToCheck = document.getElementById(elementId).value;
-    if(textToCheck.match(numbers)){
-        return true
-    }
-    return false
+    return textToCheck.match(numbers);
 }
 
 function isNotEmpty(elementId){
     const textToCheck = document.getElementById(elementId).value;
-    if(textToCheck.length != 0){
-        return true;
-    }
-    return false;
+     return textToCheck.length != 0;
 }
 
 function submitForm(formId){
