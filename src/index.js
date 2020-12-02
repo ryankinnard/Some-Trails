@@ -82,13 +82,18 @@ app.post('/search', async function redirectToSearch(req, res) {
     desPoles: 'Bring hiking poles, the elevation gain is more than 700 feet',
   };
   const coordinate = await ziptoLatLon(req.body.zip);
-  const results = await findTrailsNear(coordinate);
-  console.log(results);
-  results.forEach((element) => {
+  const trails = await findTrailsNear(coordinate);
+  let count = 0;
+  trails.forEach((element, index, array) => {
     element.distance = findDistanceToTrail(element, coordinate);
     element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
     element.difficulty = parseDifficultyFromObject(element);
   });
+
+  const results = trails.filter(
+    (element) =>
+      element.difficulty <= req.body.max && element.difficulty >= req.body.min,
+  );
 
   res.render('search-results', { results: results, gear: gear });
 });
