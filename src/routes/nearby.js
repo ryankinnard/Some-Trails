@@ -5,7 +5,11 @@ import {
   findDistanceToTrail,
   ziptoLatLon,
 } from '../controllers';
-import { Coordinate, DirectionsFactory } from '../models';
+import {
+  Coordinate,
+  DirectionsFactory,
+  parseDifficultyFromObject,
+} from '../models';
 
 const gear = {
   icon: 'https://www.flaticon.com/svg/static/icons/svg/545/545674.svg',
@@ -47,8 +51,15 @@ router
         result.directionLink = DirectionsFactory.createGoogleDirectionLink(
           trailLocation,
         );
+        result.difficulty = parseDifficultyFromObject(result);
       });
     }
+
+    results = results.filter(
+      (result) =>
+        result.difficulty <= req.query.maxDifficulty &&
+        result.difficulty >= req.query.minDifficulty,
+    );
 
     res.render(
       'nearby',
@@ -61,8 +72,8 @@ router
   .post('/', async function (req, res) {
     const zip = req.body.zip || defaults.defaultZip;
     const limit = req.body.limit || defaults.defaultLimit;
-    const minDifficulty = req.body.minDifficulty || defaults.defaultMin;
-    const maxDifficulty = req.body.maxDifficulty || defaults.defaultMax;
+    const minDifficulty = req.body.min || defaults.defaultMin;
+    const maxDifficulty = req.body.max || defaults.defaultMax;
 
     res.redirect(
       `/nearby?zip=${zip}&limit=${limit}&minDifficulty=${minDifficulty}&maxDifficulty=${maxDifficulty}`,
