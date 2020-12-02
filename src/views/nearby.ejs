@@ -1,9 +1,12 @@
 <%- include('partials/header') -%>
 <%- include('partials/navbar') -%>
 
-<% if (user) { %>
-<p> Hi <%= user.displayName %> </p>
-<% } %>
+<!-- Function for tooltip -->
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
 
 <div class="container-fluid nearby-view" id="nearby-view">
   <aside class="bg-light border-right" id="sidebar-wrapper">
@@ -11,6 +14,7 @@
       <%- include('partials/trails-search-form') -%>
     </div>
   </aside>
+
 
   Please enter a zip code on the left to search.
   

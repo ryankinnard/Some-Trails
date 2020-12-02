@@ -1,7 +1,5 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { trailsRouter, newUserRouter, authRouter, nearbyRoute } from './routes';
-import { isLoggedOn, addMiddlewares } from './middlewares';
 import {
   findTrailsNear,
   findDistanceToTrail,
@@ -12,6 +10,16 @@ import {
   parseDifficultyFromNum,
   parseDifficultyFromObject,
 } from './models';
+import {
+  trailsRouter,
+  newUserRouter,
+  authRouter,
+  nearbyRouter,
+} from './routes';
+import { isLoggedOn, addMiddlewares } from './middlewares';
+
+import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
+
 
 const express = require('express');
 
@@ -43,10 +51,9 @@ app.get('/', function (req, res) {
 });
 
 app.use('/newUser', newUserRouter);
-app.post('/newUser', newUserRouter);
 
 // nearby router
-app.use('/nearby', nearbyRoute);
+app.use('/nearby', nearbyRouter);
 
 app.get('/profile', isLoggedOn, function (req, res) {
   const diffIcon = getDifficultyIconPath(
@@ -63,6 +70,7 @@ app.get('/profile', isLoggedOn, function (req, res) {
 });
 
 app.post('/newuser', newUserRouter);
+
 
 app.post('/search', async function redirectToSearch(req, res) {
   let gear = {
