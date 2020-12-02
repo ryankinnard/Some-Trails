@@ -18,9 +18,6 @@ import {
 } from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
 
-import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
-
-
 const express = require('express');
 
 require('dotenv').config();
@@ -70,7 +67,6 @@ app.get('/profile', isLoggedOn, function (req, res) {
 });
 
 app.post('/newuser', newUserRouter);
-
 
 app.post('/search', async function redirectToSearch(req, res) {
   let gear = {
