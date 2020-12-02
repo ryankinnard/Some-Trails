@@ -34,29 +34,38 @@ const defaults = {
 };
 
 router
-  .get('/', function (req, res) {
+  .get('/', async function (req, res) {
+    let results = [];
+
+    if (req.query.zip) {
+      const coordinate = await ziptoLatLon(req.query.zip);
+      results = await findTrailsNear(coordinate);
+      results.forEach((result) => {
+        const trailLocation = new Coordinate(result.latitude, result.longitude);
+        result.distance = findDistanceToTrail(result, coordinate);
+        result.time = result.length / 2 + 0.5 * (result.ascent / 1000);
+        result.directionLink = DirectionsFactory.createGoogleDirectionLink(
+          trailLocation,
+        );
+      });
+    }
+
     res.render(
       'nearby',
       Object.assign({}, defaults, {
         user: req.user,
+        results,
       }),
     );
   })
   .post('/', async function (req, res) {
-    const coordinate = await ziptoLatLon(req.body.zip || defaults.defaultZip);
-    const results = await findTrailsNear(coordinate);
-    results.forEach((result) => {
-      const trailLocation = new Coordinate(result.latitude, result.longitude);
-      result.distance = findDistanceToTrail(result, coordinate);
-      result.time = result.length / 2 + 0.5 * (result.ascent / 1000);
-      result.directionLink = DirectionsFactory.createGoogleDirectionLink(
-        trailLocation,
-      );
-    });
+    const zip = req.body.zip || defaults.defaultZip;
+    const limit = req.body.limit || defaults.defaultLimit;
+    const minDifficulty = req.body.minDifficulty || defaults.defaultMin;
+    const maxDifficulty = req.body.maxDifficulty || defaults.defaultMax;
 
-    res.render(
-      'nearby',
-      Object.assign({}, defaults, { results, user: req.user }),
+    res.redirect(
+      `/nearby?zip=${zip}&limit=${limit}&minDifficulty=${minDifficulty}&maxDifficulty=${maxDifficulty}`,
     );
   });
 
