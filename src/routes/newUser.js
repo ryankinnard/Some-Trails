@@ -1,5 +1,5 @@
 import express from 'express';
-import { User, getDifficultyIconPath } from '../models';
+import { User, getDifficultyIconPath, parseDifficultyFromNum } from '../models';
 import * as users from '../controllers/users';
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
     password,
     email,
     displayName,
-    difficultyLevel: diccuparseDifficulty(
+    difficultyLevel: parseDifficultyFromNum(
       (parseInt(req.body.q1) +
         parseInt(req.body.q2) +
         parseInt(req.body.q3) +
