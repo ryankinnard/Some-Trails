@@ -26,6 +26,24 @@ export function getDifficultyIconPath(difficultyLevel) {
   }
 }
 
+export function parseDifficultyFromObject(results) {
+  if (results.difficulty == 'green') {
+    return 0;
+  } else if (results.difficulty == 'greenBlue') {
+    return 1;
+  } else if (results.difficulty == 'blue') {
+    return 2;
+  } else if (results.difficulty == 'blueBlack') {
+    return 3;
+  } else if (results.difficulty == 'black') {
+    return 4;
+  } else if (results.difficulty == 'blackBlack') {
+    return 5;
+  } else {
+    return 'N/A';
+  }
+}
+
 export function parseDifficultyFromNum(num) {
   if (num < 1) {
     return DifficultyLevel.GREEN;

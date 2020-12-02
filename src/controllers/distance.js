@@ -1,11 +1,7 @@
 export function findDistanceToTrail(trail, coordinate) {
-  console.log(trail.latitude);
   var radlat1 = (Math.PI * trail.latitude) / 180;
-  console.log(radlat1);
   var radlat2 = (Math.PI * coordinate.lat) / 180;
-  console.log(radlat2);
   var theta = trail.longitude - coordinate.lng;
-  console.log(theta);
   var radtheta = (Math.PI * theta) / 180;
   var dist =
     Math.sin(radlat1) * Math.sin(radlat2) +
