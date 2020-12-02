@@ -1,18 +1,14 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { trailsRouter, newUserRouter, authRouter, nearbyRoute } from './routes';
+import {
+  trailsRouter,
+  newUserRouter,
+  authRouter,
+  nearbyRouter,
+} from './routes';
 import { isLoggedOn, addMiddlewares } from './middlewares';
-import {
-  findTrailsNear,
-  findDistanceToTrail,
-  ziptoLatLon,
-} from './controllers';
-import {
-  Coordinate,
-  getDifficultyIconPath,
-  parseDifficultyFromNum,
-  DirectionsFactory,
-} from './models';
+
+import { getDifficultyIconPath, parseDifficultyFromNum } from './models';
 
 const express = require('express');
 
@@ -44,10 +40,9 @@ app.get('/', function (req, res) {
 });
 
 app.use('/newUser', newUserRouter);
-app.post('/newUser', newUserRouter);
 
 // nearby router
-app.use('/nearby', nearbyRoute);
+app.use('/nearby', nearbyRouter);
 
 app.get('/profile', isLoggedOn, function (req, res) {
   const diffIcon = getDifficultyIconPath(
@@ -57,36 +52,6 @@ app.get('/profile', isLoggedOn, function (req, res) {
 });
 
 app.post('/newuser', newUserRouter);
-
-app.post('/search', async function redirectToSearch(req, res) {
-  let gear = {
-    icon: 'https://www.flaticon.com/svg/static/icons/svg/545/545674.svg',
-    water: 'https://www.flaticon.com/svg/static/icons/svg/606/606797.svg',
-    food: 'https://www.flaticon.com/svg/static/icons/svg/1046/1046857.svg',
-    boots: 'https://www.flaticon.com/svg/static/icons/svg/2826/2826618.svg',
-    poles: 'https://www.flaticon.com/svg/static/icons/svg/2325/2325148.svg',
-    desInfo:
-      'Hover over the icons to the right to see gear, water and food recommendations for this trail',
-    desWaterThree: 'Bring 3 liters of water, trail is longer than eight miles',
-    desWaterOne: 'Bring at least a liter of water',
-    desFoodOne: 'Bring at least one snack',
-    desFoodTwo: 'Bring at least two snacks, trail is longer than five miles',
-    desBoots:
-      'Wear a solid pair of hiking boots as the terrain can be challenging',
-    desPoles: 'Bring hiking poles, the elevation gain is more than 700 feet',
-  };
-  const coordinate = await ziptoLatLon(req.body.zip);
-  const results = await findTrailsNear(coordinate);
-  results.forEach((result) => {
-    const trailLocation = new Coordinate(result.latitude, result.longitude);
-    result.distance = findDistanceToTrail(result, coordinate);
-    result.time = result.length / 2 + 0.5 * (result.ascent / 1000);
-    result.directionLink = DirectionsFactory.createGoogleDirectionLink(
-      trailLocation,
-    );
-  });
-  res.render('search-results', { results, gear });
-});
 
 // start server
 app.listen(port, () => {
