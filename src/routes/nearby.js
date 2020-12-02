@@ -24,27 +24,40 @@ const gear = {
   desPoles: 'Bring hiking poles, the elevation gain is more than 700 feet',
 };
 
+const defaults = {
+  defaultZip: 97210,
+  defaultMax: 5,
+  defaultMin: 0,
+  defaultLimit: 10,
+  results: [],
+  gear,
+};
+
 router
   .get('/', function (req, res) {
-    res.render('nearby', { results: [], gear, user: req.user });
+    res.render(
+      'nearby',
+      Object.assign({}, defaults, {
+        user: req.user,
+      }),
+    );
   })
   .post('/', async function (req, res) {
-    let results;
-    if (req.body.zip) {
-      const coordinate = await ziptoLatLon(req.body.zip);
-      results = await findTrailsNear(coordinate);
-      results.forEach((result) => {
-        const trailLocation = new Coordinate(result.latitude, result.longitude);
-        result.distance = findDistanceToTrail(result, coordinate);
-        result.time = result.length / 2 + 0.5 * (result.ascent / 1000);
-        result.directionLink = DirectionsFactory.createGoogleDirectionLink(
-          trailLocation,
-        );
-      });
-    } else {
-      results = [];
-    }
-    res.render('nearby', { results, gear, user: req.user });
+    const coordinate = await ziptoLatLon(req.body.zip || defaults.defaultZip);
+    const results = await findTrailsNear(coordinate);
+    results.forEach((result) => {
+      const trailLocation = new Coordinate(result.latitude, result.longitude);
+      result.distance = findDistanceToTrail(result, coordinate);
+      result.time = result.length / 2 + 0.5 * (result.ascent / 1000);
+      result.directionLink = DirectionsFactory.createGoogleDirectionLink(
+        trailLocation,
+      );
+    });
+
+    res.render(
+      'nearby',
+      Object.assign({}, defaults, { results, user: req.user }),
+    );
   });
 
 export const nearbyRouter = router;

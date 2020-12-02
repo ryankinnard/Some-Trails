@@ -6,7 +6,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">Zip</div>
         </div>
-        <input type="number" class="form-control" name="zip" id="zip" placeholder="00000">
+        <input type="number" class="form-control" name="zip" id="zip" placeholder=<%= defaultZip %>>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">Limit</div>
         </div>
-        <input type="number" class="form-control" id="limit" placeholder="10">
+        <input type="number" class="form-control" id="limit" placeholder=<%= defaultLimit %>>
       </div>
     </div>
   </div>
@@ -26,9 +26,11 @@
   <div class="form-row align-items-center">
     <div class="col-auto">
       <label for="minDifficulty">Min difficulty</label>
-      <input type="range" min="0" max="5" step="1" class="form-control" id="minDifficulty" placeholder="0">
+      <input type="range" min="0" max="5" step="1" class="form-control" id="minDifficulty"
+        placeholder=<%= defaultMin %>>
       <label for="maxDifficulty">Max difficulty</label>
-      <input type="range" min="0" max="5" step="1" class="form-control" id="maxDifficulty" placeholder="5">
+      <input type="range" min="0" max="5" step="1" class="form-control" id="maxDifficulty"
+        placeholder=<%= defaultMax %>>
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Search</button>
