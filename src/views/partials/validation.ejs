@@ -1,0 +1,40 @@
+<script>
+
+function atLeastOneRadioChecked(elementId){
+    var radios = document.getElementsByName(elementId);
+    for (var i = 0, len = radios.length; i < len; i++) {
+         if (radios[i].checked) {
+             return true;
+         }
+    }
+    return false;
+}
+
+function isAlphaNumeric(elementId){
+    const alphaNumeric = /^[0-9a-zA-Z]+$/;
+    const textToCheck = document.getElementById(elementId).value;
+    return textToCheck.match(alphaNumeric);
+}
+
+function isAlpha(elementId){
+    const alpha = /^[a-zA-Z]+$/;
+    const textToCheck = document.getElementById(elementId).value;
+    return textToCheck.match(alpha);
+}
+
+function isNumeric(elementId){
+    const numbers = /^[0-9]+$/;
+    const textToCheck = document.getElementById(elementId).value;
+    return textToCheck.match(numbers);
+}
+
+function isNotEmpty(elementId){
+    const textToCheck = document.getElementById(elementId).value;
+     return textToCheck.length != 0;
+}
+
+function submitForm(formId){
+    document.getElementById(formId).submit();
+}
+
+</script>

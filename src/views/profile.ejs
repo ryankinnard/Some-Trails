@@ -1,12 +1,10 @@
 <%- include('partials/header') -%>
 <%- include('partials/navbar') -%>
 
-
 <p>
-    ID: <%= user.id %><br />
     Username: <%= user.username %><br />
-    Name: <%= user.displayName %><br />
-    Phyiscal Level: <%= user.physicalLevel %><br />
+    Display Name: <%= user.displayName %><br />
+    Recommended Difficultly Level: <img src=<%= diffIcon %> > <%= recommendedDifficulty %><br /> 
 </p>
 
 <a href="/logout">Log out</a>

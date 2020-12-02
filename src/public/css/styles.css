@@ -72,3 +72,13 @@ aside form {
 main {
   padding: 1rem;
 }
+
+.gearIcon {
+  height: 30px;
+  width: 30px;
+}
+
+#infoIcon {
+  height: 20px;
+  width: 20px;
+}
