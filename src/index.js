@@ -48,7 +48,14 @@ app.get('/profile', isLoggedOn, function (req, res) {
   const diffIcon = getDifficultyIconPath(
     parseDifficultyFromNum(req.user.difficultyLevel),
   );
-  res.render('profile', { user: req.user, diffIcon: diffIcon });
+  const frontFacingDifficulty = getFrontFacingDifficulty(
+    req.user.difficultyLevel,
+  );
+  res.render('profile', {
+    user: req.user,
+    recommendedDifficulty: frontFacingDifficulty,
+    diffIcon: diffIcon,
+  });
 });
 
 app.post('/newuser', newUserRouter);

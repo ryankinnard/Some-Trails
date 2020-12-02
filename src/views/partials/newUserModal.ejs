@@ -1,4 +1,6 @@
-<form action='/newuser' method="post">
+<%- include('validation') -%> 
+
+<form action='/newuser' method="post" id="newUserForm">
 
   <script>
     $(document).ready(function(){
@@ -6,12 +8,38 @@
     });
   </script>
 
+  <script>
+    function validateQuestion(currentModal, nextModal, radioButtonName){
+      if(atLeastOneRadioChecked(radioButtonName)){
+        $('#' + currentModal).modal('hide');
+        $('#' + nextModal).modal('show');
+      }
+      else{
+        console.log("Try Again");
+      }
+    }
+
+    function validateUserInfo(currentModal){
+      if(isAlphaNumeric('username') && 
+        isNotEmpty('password') &&
+        isNotEmpty('displayName') &&
+        isNotEmpty('email')     
+        ){
+          submitForm('newUserForm');  
+        }
+      else{
+        console.log("Try Again");
+      }
+    }
+  </script>
+
+  
 <!-- New User Modal -->
 <div class="modal fade" id=newUserModalStart tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newUserModalQuestion1Titles">Greetings</h5>
+        <h5 class="modal-title" id="newUserModalIntro">Greetings</h5>
         <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -38,7 +66,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion1Titles">Physical Assessment(1/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -94,7 +122,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalStart"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion2">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion1','newUserModalQuestion2','q1')">Next</button>
       </div>
     </div>
   </div>
@@ -106,7 +134,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion2Titles">Physical Assessment(2/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -163,7 +191,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion1"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion3">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion2','newUserModalQuestion3','q2')">Next</button>
       </div>
     </div>
   </div>
@@ -175,7 +203,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion3Titles">Physical Assessment(3/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -231,7 +259,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion2"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion4">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion3','newUserModalQuestion4','q3')">Next</button>
       </div>
     </div>
   </div>
@@ -243,7 +271,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion4Titles">Physical Assessment(4/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -251,44 +279,44 @@
       <div class="modal-body">
         <fieldset class="form-group">
           <div class="row">
-            QUESTION 4
+          I am physicaly active...
           </div>
           <div class="row">
             <div class="col-sm-10">
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="q4" id="answer0" value=5>
                 <label class="form-check-label" for="answer0">
-                  Sounds Very Easy
+                  Sounds Very Accurate
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="q4" id="answer1" value=4>
                 <label class="form-check-label" for="answer1">
-                  Sounds Easy
+                  Sounds Accurate
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="q4" id="answer2" value=3>
                 <label class="form-check-label" for="answer2">
-                  Sounds Doable
+                  Sounds Believable
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="q4" id="answer3" value=2>
                 <label class="form-check-label" for="answer3">
-                  Sounds Hard
+                  Sounds Innaccurate
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="q4" id="answer4" value=1>
                 <label class="form-check-label" for="answer4">
-                  Sounds Very Hard
+                  Sounds Very Inaccurate
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="q4" id="answer5" value=0>
                 <label class="form-check-label" for="answer5">
-                  Sounds Impossible
+                  Sounds Incredibly Inaccurate
                 </label>
               </div>
 
@@ -300,7 +328,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion3"> Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion4','newUserModalQuestion5','q4')">Next</button>
       </div>
     </div>
   </div>
@@ -312,7 +340,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalQuestion5Titles">Physical Assessment(5/5)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -320,7 +348,7 @@
       <div class="modal-body">
         <fieldset class="form-group">
           <div class="row">
-            QUESTION 5
+            I can jog a mile...
           </div>
           <div class="row">            
             <div class="col-sm-10">
@@ -369,71 +397,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion4">Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalPersonalInfo">Next</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--Personal Info -->
-<div class="modal fade" id=newUserModalPersonalInfo tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newUserModalInfo">Tell me about yourself</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-sm-2 col-form-label">Gender</legend>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="Male">
-                <label class="form-check-label" for="maleRadio">
-                  Male
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gender" id="femaleRadio" value="Female">
-                <label class="form-check-label" for="femaleRadio">
-                  Female
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-
-        <div class="input-group">
-          <input type="text" class="form-control" id="newUserWeight" name="weight">
-          <div class="input-group-append">
-            <span class="input-group-text">weight in lbs</span>
-          </div>
-        </div>
-          <br>
-        <div class="input-group">
-          <input type="text" class="form-control" id="newUserHeight" name="height">
-          <div class="input-group-append">
-            <span class="input-group-text">height in inches</span>
-          </div>
-        </div>
-        <br>
-        <div class="input-group">
-          <input type="text" class="form-control" id="newUserDisplayName" name="displayName">
-          <div class="input-group-append">
-            <span class="input-group-text">What Should I Call You?</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Back</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#newUserModalUserInfo">Next</button>
+        <button type="button" class="btn btn-primary" onclick="validateQuestion('newUserModalQuestion5','newUserModalUserInfo','q5')">Next</button>
       </div>
     </div>
   </div>
@@ -445,7 +409,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newUserModalInfo">Account Info</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" href="src/views/home.ejs" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -466,6 +430,13 @@
         </div>
         <br>
         <div class="input-group">
+          <input type="text" class="form-control" id="displayName" name="displayName">
+          <div class="input-group-append">
+            <span class="input-group-text">Display Name</span>
+          </div>
+        </div>
+        <br>
+        <div class="input-group">
           <input type="text" class="form-control" id="email" name="email">
           <div class="input-group-append">
             <span class="input-group-text">Email</span>
@@ -476,7 +447,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" href="#newUserModalQuestion5">Back</button>
-        <button type="submit" class="btn btn-primary">Create User</button>
+        <button type="button" class="btn btn-primary" onclick="validateUserInfo('newUserModalUserInfo')">Create User</button>
       </div>
     </div>
   </div>
