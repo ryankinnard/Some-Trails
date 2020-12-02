@@ -83,13 +83,13 @@ app.post('/search', async function redirectToSearch(req, res) {
   };
   const coordinate = await ziptoLatLon(req.body.zip);
   const results = await findTrailsNear(coordinate);
+  console.log(results);
   results.forEach((element) => {
     element.distance = findDistanceToTrail(element, coordinate);
     element.time = element.length / 2 + 0.5 * (element.ascent / 1000);
+    element.difficulty = parseDifficultyFromObject(element);
   });
-  console.log(results);
-  console.log(req.body.min);
-  console.log(req.body.max);
+
   res.render('search-results', { results: results, gear: gear });
 });
 
