@@ -3,4 +3,8 @@ export class Coordinate {
     this.latitude = latitude;
     this.longitude = longitude;
   }
+
+  toDecimalDegrees() {
+    return `${this.latitude},${this.longitude}`;
+  }
 }
