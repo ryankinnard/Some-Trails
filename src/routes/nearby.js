@@ -17,6 +17,7 @@ const gear = {
   food: 'https://www.flaticon.com/svg/static/icons/svg/1046/1046857.svg',
   boots: 'https://www.flaticon.com/svg/static/icons/svg/2826/2826618.svg',
   poles: 'https://www.flaticon.com/svg/static/icons/svg/2325/2325148.svg',
+  desJust: 'Search for Trails based on your fitness level',
   desInfo:
     'Hover over the icons to the right to see gear recommendations for this trail',
   desWaterThree: 'Bring 3 liters of water, trail is longer than eight miles',
@@ -33,6 +34,7 @@ const defaults = {
   defaultMax: 5,
   defaultMin: 0,
   defaultLimit: 10,
+  deafaultJustForYou: null,
   results: [],
   gear,
 };
@@ -61,6 +63,12 @@ router
         result.difficulty >= req.query.minDifficulty,
     );
 
+    if (req.query.justForYou === 'on' && req.user !== undefined) {
+      results = results.filter(
+        (result) => result.difficulty == req.user.difficultyLevel,
+      );
+    }
+
     res.render(
       'nearby',
       Object.assign({}, defaults, {
@@ -74,9 +82,10 @@ router
     const limit = req.body.limit || defaults.defaultLimit;
     const minDifficulty = req.body.min || defaults.defaultMin;
     const maxDifficulty = req.body.max || defaults.defaultMax;
+    const justForYou = req.body.justForYou || defaults.JustForYou;
 
     res.redirect(
-      `/nearby?zip=${zip}&limit=${limit}&minDifficulty=${minDifficulty}&maxDifficulty=${maxDifficulty}`,
+      `/nearby?zip=${zip}&limit=${limit}&minDifficulty=${minDifficulty}&maxDifficulty=${maxDifficulty}&justForYou=${justForYou}`,
     );
   });
 
