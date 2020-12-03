@@ -38,15 +38,16 @@
       <input type="range" min="0" max="5" step="1" class="form-control" name="max" id="maxDifficulty" value=<%= defaultMax %>>
     </div>
   </div>
-  <div class="form-row align-items-center">
-    <div class="col-7">
+  <div class="form-row">
+    <div class="col-10">
       <label for="justForYou">Just For You</label>
       <input type="checkbox" class="form-control" name="justForYou" id="justForYou">
     </div>
-    <div class="col-3">
+    <div class="col-2">
       <img id="infoIcon" data-toggle="tooltip" data-placement="bottom" title="<%= gear.desJust %>"
       src="<%= gear.icon %>" class="img-fluid">
     </div>
+    
   </div>
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
