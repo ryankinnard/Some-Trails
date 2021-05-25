@@ -1,7 +1,7 @@
 # Some-Trails
 
 
-**Some-Trails** is a web application where a user can search for nearby hiking trails based off ability level.
+**Some-Trails** is a web application where a user can search for nearby hiking trails based on their hiking ability level.
 
 
 
