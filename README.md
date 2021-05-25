@@ -1,33 +1,25 @@
 # Some-Trails
 
-## Getting started
 
-Clone the repo and run the following commands
+**Some-Trails** is a web application where a user can search for nearby hiking trails based off ability level.
 
-Install dependencies
 
-```sh
-  npm i
-```
 
-```sh
-  npm run start:dev
-```
+## User Stories
 
-You should now have the server running on localhost:3000. When you change source code, webpack should rebuild and nodemon will run the new code without needing to restart the server.
+The following  functionality is implemented:
 
-## DOTENV
+- [X] User can sign up to create a new account.
+- [X] User can log in and log of their account.
+- [X] User can get hiking ability level based on input
+- [X] User can take search for nearby hiking trails.
+- [X] User can use "just for you" feature to find trails suited for their ability.
+- [X] User can view gear reccommendations for each hike. 
+- [X] User can view directions to start of hike.
 
-You will need to create a new `.env` file with your token from hiking project. See `env.sample`.
+## Video Walkthrough
 
-## Linting
+<img src='gifs/gif_3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Linting mistakes are corrected when you commit using a githook or by running
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-```sh
-  npm run lint:fix
-```
-
-## Deploying
-
-Simply open a pr and when it is merged the CD pipeline will deploy the change
