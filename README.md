@@ -23,3 +23,20 @@ The following  functionality is implemented:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
+<h3>Built with</h3>
+
+<h4>Front-end</h4>
+
+<ul>
+  <li>ejs</li>
+  <li>Bootstrap</li>
+</ul>
+
+<h4>Back-end</h4>
+
+<ul>
+  <li>express</li>
+  <li>express-session</li>
+</ul>
+
+
