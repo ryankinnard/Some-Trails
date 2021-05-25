@@ -23,7 +23,7 @@ The following  functionality is implemented:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-<h3>Built with</h3>
+## Built With
 
 <h4>Front-end</h4>
 
