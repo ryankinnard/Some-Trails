@@ -10,8 +10,8 @@
 The following  functionality is implemented:
 
 - [X] User can sign up to create a new account.
-- [X] User can log in and log of their account.
-- [X] User can get hiking ability level based on input
+- [X] User can log in and log out of their account.
+- [X] User can get hiking ability level based on input.
 - [X] User can take search for nearby hiking trails.
 - [X] User can use "just for you" feature to find trails suited for their ability.
 - [X] User can view gear reccommendations for each hike. 
@@ -19,7 +19,7 @@ The following  functionality is implemented:
 
 ## Video Walkthrough
 
-<img src='gifs/gif_3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/yb3Vty3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
