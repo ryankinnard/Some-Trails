@@ -25,18 +25,20 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Built With
 
-<h4>Front-end</h4>
+<h4>Front end</h4>
 
 <ul>
-  <li>ejs</li>
+  <li>JavaScript</li>
+  <li>Ejs</li>
   <li>Bootstrap</li>
 </ul>
 
-<h4>Back-end</h4>
+<h4>Back end</h4>
 
 <ul>
-  <li>express</li>
-  <li>express-session</li>
+  <li>Node.js
+  <li>Express.js</li>
+  <li>Express-session</li>
 </ul>
 
 
