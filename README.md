@@ -1,4 +1,4 @@
-# hiking-app
+# Some-Trails
 
 ## Getting started
 
